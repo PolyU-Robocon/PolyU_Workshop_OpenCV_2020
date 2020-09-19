@@ -1,8 +1,7 @@
 # PolyU_Workshop_OpenCV_2020
 
 
-
-This workshop will give an brief introduction about Image Processing and OpenCV, a strong library for processing images.
+This workshop will briefly introduce Image Processing and OpenCV, a robust library for processing images.
 
 
 
