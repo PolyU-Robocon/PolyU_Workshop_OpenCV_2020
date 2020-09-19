@@ -25,8 +25,6 @@
 
 **1-dimensional array**
 
-Think of it like a table.
-
 <img src="https://www.mvps.net/docs/wp-content/uploads/2019/03/Array-data-structure.jpg" style="zoom:33%;" />
 
 **2-dimensional array**
