@@ -35,7 +35,7 @@ Think of it like an x y coordinate system.
 
 **3-dimensional array** <- Where images are stored
 
-Think of this seeming two dimensional array but these are stacks behind them.
+Think of this as many two dimensional arrays stacked together.
 
 <img src="https://brohrer.github.io/images/image_processing/three_d_array.png" style="zoom:50%;" />
 
