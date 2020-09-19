@@ -4,7 +4,7 @@
 
 ## What are Images?
 
-* 2-Dimensional representation of the visble light spectrum
+* 2-Dimensional representation of the visible light spectrum
 * Each pixel point corresponds to a different color which means that reflects different wavelengths of light
 
 <img src="https://i.imgur.com/Wp5yX3k.png" style="zoom:50%;" />
@@ -94,6 +94,42 @@ OpenCV's default color space is RGB.
 Grayscale is a range of shades of gray without apparent color. The darkest possible shade is black, which is the total absence of transmitted or reflected light. The lightest possible shade is white, the total transmission or reflection of light at all visible wavelengths.
 
 ![](https://1.bp.blogspot.com/-2wsOF9awhCQ/Vl8GqWa8OaI/AAAAAAAAA9s/iFjSnJc_m3A/s1600/grayscale.jpg)
+
+
+
+## HSV Color Space
+
+HSV (Hue, Saturation & Value/Brightness) is a color space that attempts to represent colors the way human perceive it. It stores color information in a cyclindrical representation of RGB color points.
+
+### HSV Color Model
+
+![](https://www.researchgate.net/profile/Ravindran_G/publication/321126312/figure/fig1/AS:561582682722304@1510903153364/llustration-of-the-HSV-Color-Space-B-Color-Feature-Extraction-Color-feature-is-extracted.png)
+
+* Hue - Color Value (0-179)
+* Saturation - Vibrancy of Color (0-255)
+* Value - Brightness or Intensity (0-255)
+
+![](https://raw.githubusercontent.com/shikitari/hsv_color/7bf85845e6f860e832c08493e9a1949cc8c29cf4/dist/demo.gif)
+
+> HSV is useful in computer vision for color segmentation. In RGB, filtering specific colors isn't easy. However, HSV makes it much easier to set color ranges to filter specific colors as we perceive them.
+
+### Color Filtering
+
+> The Hue (Hue color range, goes from 0 to 180. NOT 360) and is mapped **differently than standard** in OpenCV.
+
+Color Range Filters:
+
+* Red - 165 to 15
+* Green - 45 to 75
+* Blue - 90 to 120
+
+![](https://answers.opencv.org/upfiles/15186766673210035.png)
+
+[Why is the range of Hue 0-180° in OpenCV?](https://stackoverflow.com/questions/16685707/why-is-the-range-of-hue-0-180-in-opencv)
+
+> Now you understand why I said Hue is 0-179 in HSV space. 180 = 0.
+
+
 
 
 
