@@ -1,8 +1,12 @@
 import numpy as np
 import cv2
 
+# https://www.pyimagesearch.com/2015/04/06/zero-parameter-automatic-canny-edge-detection-with-python-and-opencv/
+#import imutils
+
 cap = cv2.VideoCapture(0)
 
+# keep looping
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -14,7 +18,14 @@ while(True):
 
     canny_edges = cv2.Canny(gray_blur, 10, 70)
 
+
+    #auto_canny = imutils.auto_canny(gray_blur)
+
     ret, mask = cv2.threshold(canny_edges, 70, 255, cv2.THRESH_BINARY_INV)
+
+    #ret, mask = cv2.threshold(auto_canny, 70, 255, cv2.THRESH_BINARY_INV)
+
+    
 
     # Display the resulting frame
     cv2.imshow('frame',mask)
