@@ -54,5 +54,21 @@ My OpenCV version is: 4.4.0
 ---------------------------------------
 ```
 
+Now you should be able to run the other files.
 
+## Content
+
+### Scripts
+
+* `webcam.py` - start camera through opencv
+* `canny.py` - cannyedge detection
+* `colortracking.py` - color tracker for learning HSV
+* `selectable-tracker.py` - selectable object tracker (Bonus)
+
+
+### Demo Videos
+
+* `max_heli.mp4` - a short clip of 3D modelling. Author @vinesmsuic
+* `dvd.mp4` - a short clip of dvd screensaver. source from https://www.youtube.com/watch?v=3hc-GxV1BS8 
+ 
 

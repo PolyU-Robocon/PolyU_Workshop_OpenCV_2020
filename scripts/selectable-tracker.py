@@ -28,7 +28,8 @@ while True:
 
     fps = cv2.getTickFrequency()/(cv2.getTickCount()-timer)
     cv2.putText(img,str(int(fps)),(75,50),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,0,255),2)
-    cv2.imshow("Tracking",img)
+    cv2.imshow("Video Tracker",img)
 
+    #if pressing q key, exit
     if cv2.waitKey(1) & 0xff ==ord('q'):
         break
