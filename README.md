@@ -8,7 +8,7 @@ This workshop will briefly introduce Image Processing and OpenCV, a robust libra
 ## Prerequisite
 
 * Have Python3 Installed
-* Have PIP installed
+* Have PIP3 installed
 
 
 
@@ -33,7 +33,7 @@ or download the Repo hitting that `Download ZIP` Button.
 Install the libraries needed (You need to first `cd` to the repo.)
 
 ```shell
-$ pip install -U -r requirements.txt
+$ pip3 install -U -r requirement.txt
 ```
 
 
