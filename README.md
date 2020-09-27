@@ -36,8 +36,6 @@ Install the libraries needed (You need to first `cd` to the repo.)
 $ pip install -U -r requirement.txt
 ```
 
-
-
 Then run `checking.py` to verify installation (You need to `cd` to the `scripts` folder)
 
 ```shell
