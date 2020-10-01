@@ -13,10 +13,10 @@ colorUpper = (180,255,255)
 
  
 # grab the reference to the webcam
-#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
 
 # in case you want to grab the reference to a video
-cap = cv2.VideoCapture("dvd.mp4")
+#cap = cv2.VideoCapture("dvd.mp4")
  
 # allow the camera or video file to warm up
 #time.sleep(2.0)

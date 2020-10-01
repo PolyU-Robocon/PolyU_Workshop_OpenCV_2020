@@ -1,4 +1,4 @@
-opencv-python
 numpy
+opencv-python
 imutils
 opencv-contrib-python

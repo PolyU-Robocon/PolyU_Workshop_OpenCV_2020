@@ -8,7 +8,7 @@ This workshop will briefly introduce Image Processing and OpenCV, a robust libra
 ## Prerequisite
 
 * Have Python3 Installed
-* Have PIP installed
+* Have PIP3 installed
 
 
 
@@ -33,8 +33,30 @@ or download the Repo hitting that `Download ZIP` Button.
 Install the libraries needed (You need to first `cd` to the repo.)
 
 ```shell
-$ pip install -U -r requirement.txt
+$ pip3 install -U -r requirement.txt
 ```
+
+In case the above code got error, try to install those dependencies on your own.
+
+* `opencv-python`
+* `imutils`
+* `opencv-contrib-python`
+
+> For Windows/MacOS, you may use [anaconda](https://www.anaconda.com/) to get opencv
+> Firstly, install [anaconda](https://www.anaconda.com/) , then type the commands:
+> ```shell
+> $ conda install -c conda-forge opencv
+> $ sudo pip3 install imutils
+> $ sudo pip3 install opencv-contrib-python
+> ```
+
+> For Linux distro, use the below command to get opencv
+> ```shell
+> $ sudo apt install python3-opencv
+> $ sudo pip3 install imutils
+> $ sudo pip3 install opencv-contrib-python
+> ```
+
 
 Then run `checking.py` to verify installation (You need to `cd` to the `scripts` folder)
 
