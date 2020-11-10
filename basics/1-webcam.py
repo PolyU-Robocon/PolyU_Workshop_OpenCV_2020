@@ -10,7 +10,7 @@ while(True):
     ret, frame = cap.read()
 
     # Our operations on the frame come here
-    
+    #frame = cv2.resize(frame, (848, 480))
 
     # Display the resulting frame
     cv2.imshow('frame',frame)
