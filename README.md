@@ -1,20 +1,21 @@
 # PolyU_Workshop_OpenCV_2020
 
+Host : The Hong Kong Institution of Engineers(HKIE), HKIESC-PolyU , PolyU Enginnering Club, PolyU Robotics Team
+Presenter : @vinesmsuic (From PolyU Robotics Team)
 
-This workshop will briefly introduce Image Processing and OpenCV, a robust library for processing images.
 
+This workshop will briefly introduce Computer Vision and OpenCV. 
+OpenCV is a robust library for processing images.
 
 
 ## Prerequisite
 
 * Have Python3 Installed
 * Have PIP3 installed
-
+* Basic knowledge of Python
 
 
 ## Preparation
-
-
 
 Download the Repo through `git clone`
 
@@ -25,9 +26,6 @@ $ git clone https://github.com/PolyU-Robocon/PolyU_Workshop_OpenCV_2020.git
 or download the Repo hitting that `Download ZIP` Button.
 
 <img src="https://i.imgur.com/9kyv1pQ.png" style="zoom:33%;" />
-
-
-
 
 
 Install the libraries needed (You need to first `cd` to the repo.)
@@ -78,13 +76,24 @@ Now you should be able to run the other files.
 
 ## Content
 
-### Scripts
+### Notes
 
+* `lecturenotes.md` - Conceptual notes.
+* `quicknotes.md` - Explain python code.
+
+### Basics
+
+* `checking.py` - check python and opencv versions
 * `webcam.py` - start camera through opencv
-* `canny.py` - cannyedge detection
-* `colortracking.py` - color tracker for learning HSV
-* `selectable-tracker.py` - selectable object tracker (Bonus)
+* `imagelayers.py` - learn about the image layers
+* `colormasking` - learn about masking
+* `colortracking.py` - color tracker for learning color filtering
+* `colortrackingFull.py` - brief introduction to imutil
 
+### Extra
+
+* `canny.py` - cannyedge detection
+* `selectable-tracker.py` - selectable object tracking using tracker
 
 ### Demo Videos
 

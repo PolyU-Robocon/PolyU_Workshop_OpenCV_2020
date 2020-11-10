@@ -7,14 +7,13 @@ colorLower = (120,50,55)
 colorUpper = (180,255,255)
 # ^ Notice HSV Hue is 0 ~ 180!
 
- 
 # grab the reference to the webcam
 cap = cv2.VideoCapture(0)
 
 # keep looping
 while True:
 	# grab the current frame
-	ret, frame = cap.read()
+	_, frame = cap.read()
 
 	# if we are viewing a video and we did not grab a frame,
 	# then we have reached the end of the video
@@ -49,8 +48,7 @@ while True:
 		if radius > 10:
 			# draw the circle and centroid on the frame,
 			# then update the list of tracked points
-			cv2.circle(frame, (int(x), int(y)), int(radius),
-				(0, 255, 255), 2)
+			cv2.circle(frame, (int(x), int(y)), int(radius),(0, 255, 255), 2)
  
 	# show the frame to our screen
 	cv2.imshow("Color Tracker", frame)

@@ -13,7 +13,7 @@
 
 ## How do Computer store images?
 
-* OpenCV use **RGB** color space by default. [What is RGB?](https://en.wikipedia.org/wiki/RGB_color_model)
+* Computer store images in **RGB** color space by default. [What is RGB?](https://en.wikipedia.org/wiki/RGB_color_model)
 * Each pixel corrdinate (x,y) of a 2D plane contains 3 values ranging for intensities of 0 to 255 (8-bit).
   * Red
   * Green

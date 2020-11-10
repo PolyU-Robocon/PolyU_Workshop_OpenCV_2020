@@ -22,8 +22,7 @@ cap = cv2.VideoCapture("dvd.mp4")
 # keep looping
 while True:
 	# grab the current frame
-	#frame = vs.read()
-	ret, frame = cap.read()
+	_, frame = cap.read()
 
 	# if we are viewing a video and we did not grab a frame,
 	# then we have reached the end of the video
@@ -36,17 +35,16 @@ while True:
 	blurred = cv2.GaussianBlur(frame, (11, 11), 0)
 	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
  
-	# construct a mask for the color, then perform
-	# a series of dilations and erosions to remove any small
-	# blobs left in the mask
+	# construct a mask for the color 
 	mask = cv2.inRange(hsv, colorLower, colorUpper)
+
+	# perform a series of dilations and erosions to remove any small blobs left in the mask
 	mask = cv2.erode(mask, None, iterations=2)
 	mask = cv2.dilate(mask, None, iterations=2)
 
     # find contours in the mask and initialize the current
 	# (x, y) center of the ball
-	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
-		cv2.CHAIN_APPROX_SIMPLE)
+	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 	cnts = imutils.grab_contours(cnts)
  
 	# only proceed if at least one contour was found
@@ -61,8 +59,7 @@ while True:
 		if radius > 10:
 			# draw the circle and centroid on the frame,
 			# then update the list of tracked points
-			cv2.circle(frame, (int(x), int(y)), int(radius),
-				(0, 255, 255), 2)
+			cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
  
 	# show the frame to our screen
 	cv2.imshow("Color Tracker", frame)
