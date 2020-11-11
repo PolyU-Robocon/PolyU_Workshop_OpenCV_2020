@@ -5,16 +5,17 @@ import imutils
 #import time
 
 # define the lower and upper boundaries of the "color" in the HSV color space
-colorLower = (120,50,55)
-colorUpper = (180,255,255)
-# ^ Notice HSV Hue is 0 ~ 180!
-
+#colorLower = np.array([9,156,108])
+#colorUpper = np.array([12,255,234])
+colorLower = np.array([173,148,84])
+colorUpper = np.array([179,255,255])
+# ^ Notice HSV Hue is 0 ~ 179!
  
 # grab the reference to the webcam
-#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
 
 # in case you want to grab the reference to a video
-cap = cv2.VideoCapture("dvd.mp4")
+#cap = cv2.VideoCapture("dvd.mp4")
  
 # allow the camera or video file to warm up
 #time.sleep(2.0)
@@ -29,10 +30,9 @@ while True:
 	if frame is None:
 		break
  
-	# resize the frame, blur it, and convert it to the HSV
-	# color space
+	# resize the frame, blur it, and convert it to the HSV color space
 	frame = imutils.resize(frame, width=600)
-	blurred = cv2.GaussianBlur(frame, (11, 11), 0)
+	blurred = cv2.GaussianBlur(frame, (11, 11), 0) # eliminate noises
 	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
  
 	# construct a mask for the color 
@@ -42,23 +42,19 @@ while True:
 	mask = cv2.erode(mask, None, iterations=2)
 	mask = cv2.dilate(mask, None, iterations=2)
 
-    # find contours in the mask and initialize the current
-	# (x, y) center of the ball
+    # find contours in the mask and initialize the current (x, y) center
 	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 	cnts = imutils.grab_contours(cnts)
  
 	# only proceed if at least one contour was found
 	if len(cnts) > 0:
-		# find the largest contour in the mask, then use
-		# it to compute the minimum enclosing circle and
-		# centroid
+		# find the largest contour in the mask, then use it to compute the minimum enclosing circle
 		c = max(cnts, key=cv2.contourArea)
 		((x, y), radius) = cv2.minEnclosingCircle(c)
  
 		# only proceed if the radius meets a minimum size
 		if radius > 10:
-			# draw the circle and centroid on the frame,
-			# then update the list of tracked points
+			# draw the circle on the frame
 			cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
  
 	# show the frame to our screen

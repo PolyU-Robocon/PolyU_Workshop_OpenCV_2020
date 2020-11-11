@@ -73,12 +73,6 @@ The above image is not correct in OpenCV's situation.
 
 
 
-
-
-
-
-
-
 * `frame[column, row, channel]`
   * `R[:,:,0]` means all columns, all rows in the first channel (which is Blue) of the frame `R`.
 * `.copy()` is a method in Numpy. It will create a copy of the array you need.
@@ -103,17 +97,42 @@ The above image is not correct in OpenCV's situation.
 
 
 
+* `np.array()` creates an array.
+* `cv2.cvtColor()` allows you to convert a color into another space.
+  * `cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)` from BGR to HSV
+* `cv2.inRange(frame, lowerbound, upperbound)`
+  * For color between lowerbound and upperbound, value become 255 (white)
+  * For color not in lowerbound and upperbound, value become 0 (black)
+
+
+
+
+
+For Tuning the mask color we want, we can use :
+
+* http://colorizer.org/
+* or use the `colorthresholder.py` script in extra folder (More robust)
+
+
+
+
+
+
+
 ## Color Tracking
 
 
 
-* `cv2.circle(image, center_coordinates, radius, color, thickness)`
-
-
-
-
-
-
+* `cv2.findContours()` returns (frame,contours,hierarchy).
+  * Note for some versions of opencv might only return (contours,hierarchy).
+* `cv2.RETR_EXTERNAL`  retrieves only the extreme outer contours
+  * You could also try with `cv2.RETR_LIST`, `cv2.RETR_CCOMP`, or `cv2.RETR_TREE`.
+* `cv2.CHAIN_APPROX_SIMPLE` means the algorithm we are using for getting contours.
+  * `cv2.CHAIN_APPROX_SIMPLE` removes all redundant points and compresses the contour, thereby saving memory
+  * You could also try with `cv2.CHAIN_APPROX_NONE` to find all the boundary points
+* https://docs.opencv.org/master/dd/d49/tutorial_py_contour_features.html
+* `cv2.circle(frame, center_coordinates, radius, color, thickness)` allows you to draw a circle in your window.
+  * `cv2.circle(frame, (int(x), int(y)), int(radius),(0, 255, 255), 2)`
 
 
 
@@ -123,7 +142,40 @@ The above image is not correct in OpenCV's situation.
 
 
 
-What is `imutils`? 
+**What is GaussianBlur?**
+
+> GuassianBlur is typically used to reduce image noise and reduce detail.
+>
+> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Halftone%2C_Gaussian_Blur.jpg" style="zoom:50%;" />
+>
+> 
+
+
+
+
+
+**What is Dilation and Erosion, Opening and Closing?**
+
+![](https://image.slidesharecdn.com/dilationanderosion-140918230208-phpapp01/95/dilation-and-erosion-5-638.jpg?cb=1411081368)
+
+TLDR:
+
+* Dilation - Add pixels to the boundaries of objects in an image
+* Erosion - Removes pixels at the boundaries of objects in an image
+* Opening - Erosion then Dilation
+* Closing - Dilation then Erosion
+
+Note in OpenCV recognize WHITE as object itself.
+
+> So the effect of dilation and erosion might do the reverse of what you expect.
+
+
+
+
+
+
+
+**What is `imutils`?** 
 
 > `imutils` is A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying Matplotlib images easier with OpenCV and ***both*** Python 2.7 and Python 3.
 >

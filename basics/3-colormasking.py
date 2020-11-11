@@ -3,9 +3,9 @@ import numpy as np
 import cv2
 
 # define the lower and upper boundaries of the "color" in the HSV color space
-colorLower = (120,50,55)
-colorUpper = (180,255,255)
-# ^ Notice HSV Hue is 0 ~ 180!
+colorLower = np.array([173,148,84])
+colorUpper = np.array([179,255,255])
+# ^ Notice HSV Hue is 0 ~ 179!
 
 # grab the reference to the webcam
 cap = cv2.VideoCapture(0)
@@ -22,8 +22,7 @@ while True:
  
 	# resize the frame, blur it, and convert it to the HSV color space
 	frame = cv2.resize(frame, (848, 480))
-	blurred = cv2.GaussianBlur(frame, (11, 11), 0) # eliminate noises
-	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
  
 	# construct a mask for the color
 	mask = cv2.inRange(hsv, colorLower, colorUpper)

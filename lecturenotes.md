@@ -113,7 +113,7 @@ HSV (Hue, Saturation & Value/Brightness) is a color space that attempts to repre
 
 ### Color Filtering
 
-> The Hue (Hue color range, goes from 0 to 180. NOT 360) and is mapped **differently than standard** in OpenCV.
+> The Hue (Hue color range, goes from 0 to 179. NOT 360) and is mapped **differently than standard** in OpenCV.
 
 Color Range Filters:
 
@@ -152,6 +152,7 @@ You can use either C++ or Python with it.
 * Python allows us to do to easily grasp complex concepts.
 * Python is one of the easiest easiest languages for beginners 
 * It stores images in numpy arrays which allows us to do some very powerful operations quite easily
+* Python is good for prototyping
 
 
 
