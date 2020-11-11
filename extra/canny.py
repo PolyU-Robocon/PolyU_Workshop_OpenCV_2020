@@ -14,6 +14,7 @@ while(True):
     # Our operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+    # https://en.wikipedia.org/wiki/Gaussian_blur
     gray_blur = cv2.GaussianBlur(gray, (5,5), 0)
 
     #canny_edges = cv2.Canny(gray_blur, 10, 70)
