@@ -44,6 +44,31 @@ Now you should be able to run the other files.
 
 ## webcam.py
 
+```python
+# https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_video_display/py_video_display.html
+import numpy as np
+import cv2
+
+cap = cv2.VideoCapture(0)
+
+# keep looping
+while(True):
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Our operations on the frame come here
+    #frame = cv2.resize(frame, (848, 480))
+
+    # Display the resulting frame
+    cv2.imshow('frame',frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# When everything done, release the capture
+cap.release()
+cv2.destroyAllWindows()
+```
+
 
 
 
@@ -71,6 +96,52 @@ The above image is not correct in OpenCV's situation.
 
 
 
+```python
+import numpy as np
+import cv2
+
+cap = cv2.VideoCapture(0)
+
+# keep looping
+while(True):
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Our operations on the frame come here
+    # Note OpenCV store colors in BGR format.
+
+    frame = cv2.resize(frame, (848, 480))
+
+    R = frame.copy()
+    R[:,:,0] = 0 # Turn Blue channel to 0
+    R[:,:,1] = 0 # Turn Green channel to 0
+    # Now R has Red channel only
+
+    G = frame.copy()
+    G[:,:,0] = 0 # Turn Blue channel to 0
+    G[:,:,2] = 0 # Turn Red channel to 0
+    # Now R has Green channel only
+
+    B = frame.copy()
+    B[:,:,1] = 0 # Turn Green channel to 0
+    B[:,:,2] = 0 # Turn Red channel to 0
+    # Now R has Blue channel only
+
+    # Display the resulting frame
+    cv2.imshow('frame, Red Channel',R)
+    cv2.imshow('frame, Green Channel',G)
+    cv2.imshow('frame, Blue Channel',B)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# When everything done, release the capture
+cap.release()
+cv2.destroyAllWindows()
+```
+
+
+
 
 
 * `frame[column, row, channel]`
@@ -92,6 +163,54 @@ The above image is not correct in OpenCV's situation.
 > The simple answer is that unlike [RGB](http://en.wikipedia.org/wiki/RGB_color_space), [HSV](http://en.wikipedia.org/wiki/HSL_and_HSV) separates *luma*, or the image intensity, from *chroma* or the color information. This is very useful in many applications. For example, if you want to do histogram equalization of a color image, you probably want to do that only on the intensity component, and leave the color components alone. Otherwise you will get very strange colors.
 >
 > In computer vision you often want to separate color components from intensity for various reasons, such as robustness to lighting changes, or removing shadows.
+
+
+
+```python
+# import the necessary packages
+import numpy as np
+import cv2
+
+# define the lower and upper boundaries of the "color" in the HSV color space
+colorLower = np.array([173,148,84])
+colorUpper = np.array([179,255,255])
+# ^ Notice HSV Hue is 0 ~ 179!
+
+# grab the reference to the webcam
+cap = cv2.VideoCapture(0)
+
+# keep looping
+while True:
+	# grab the current frame
+	_, frame = cap.read()
+
+	# if we are viewing a video and we did not grab a frame,
+	# then we have reached the end of the video
+	if frame is None:
+		break
+ 
+	# resize the frame, blur it, and convert it to the HSV color space
+	frame = cv2.resize(frame, (848, 480))
+	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+ 
+	# construct a mask for the color
+	mask = cv2.inRange(hsv, colorLower, colorUpper)
+
+	# show the frame to our screen
+	cv2.imshow("Color", frame)
+	cv2.imshow("Masked", mask)
+
+	# if the 'q' key is pressed, stop the loop
+	if cv2.waitKey(1) & 0xFF == ord("q"):
+		break
+
+# stop the camera video stream
+cap.release()
+
+# close all windows
+cv2.destroyAllWindows()
+
+```
 
 
 
@@ -123,6 +242,72 @@ For Tuning the mask color we want, we can use :
 
 
 
+```python
+# import the necessary packages
+import numpy as np
+import cv2
+
+# define the lower and upper boundaries of the "color" in the HSV color space
+colorLower = np.array([173,148,84])
+colorUpper = np.array([179,255,255])
+# ^ Notice HSV Hue is 0 ~ 179!
+
+# grab the reference to the webcam
+cap = cv2.VideoCapture(0)
+
+# keep looping
+while True:
+	# grab the current frame
+	_, frame = cap.read()
+
+	# resize the frame, blur it, and convert it to the HSV color space
+	frame = cv2.resize(frame, (800, 500))
+	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+ 
+	# construct a mask for the color
+	mask = cv2.inRange(hsv, colorLower, colorUpper)
+
+    # find contours in the mask and initialize the current (x, y) center of the ball
+	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+	
+	if len(cnts) == 2:
+		cnts = cnts[0] # For OpenCV v2.4, v4-beta, or v4-official
+	elif len(cnts) == 3:
+		cnts = cnts[1] # For OpenCV v3, v4-pre, or v4-alpha
+
+	# only proceed if at least one contour was found
+	if len(cnts) > 0:
+		# find the largest contour in the mask
+		c = max(cnts, key=cv2.contourArea)
+
+		# use it to compute the minimum enclosing circle
+		((x, y), radius) = cv2.minEnclosingCircle(c)
+ 
+		# only proceed if the radius meets a minimum size
+		if radius > 10:
+			# draw the circle on the frame
+			cv2.circle(frame, (int(x), int(y)), int(radius),(0, 255, 255), 2)
+ 
+	# show the frame to our screen
+	cv2.imshow("Color Tracker", frame)
+	cv2.imshow("Masked", mask)
+
+	# if the 'q' key is pressed, stop the loop
+	if cv2.waitKey(1) & 0xFF == ord("q"):
+		break
+
+# stop the camera video stream
+cap.release()
+
+# close all windows
+cv2.destroyAllWindows()
+
+```
+
+
+
+
+
 * `cv2.findContours()` returns (frame,contours,hierarchy).
   * Note for some versions of opencv might only return (contours,hierarchy).
 * `cv2.RETR_EXTERNAL`  retrieves only the extreme outer contours
@@ -139,6 +324,86 @@ For Tuning the mask color we want, we can use :
 
 
 ## Full Code
+
+
+
+```python
+# import the necessary packages
+import numpy as np
+import cv2
+import imutils
+#import time
+
+# define the lower and upper boundaries of the "color" in the HSV color space
+#colorLower = np.array([9,156,108])
+#colorUpper = np.array([12,255,234])
+colorLower = np.array([173,148,84])
+colorUpper = np.array([179,255,255])
+# ^ Notice HSV Hue is 0 ~ 179!
+ 
+# grab the reference to the webcam
+cap = cv2.VideoCapture(0)
+
+# in case you want to grab the reference to a video
+#cap = cv2.VideoCapture("dvd.mp4")
+ 
+# allow the camera or video file to warm up
+#time.sleep(2.0)
+
+# keep looping
+while True:
+	# grab the current frame
+	_, frame = cap.read()
+
+	# if we are viewing a video and we did not grab a frame,
+	# then we have reached the end of the video
+	if frame is None:
+		break
+ 
+	# resize the frame, blur it, and convert it to the HSV color space
+	frame = imutils.resize(frame, width=600)
+	blurred = cv2.GaussianBlur(frame, (11, 11), 0) # eliminate noises
+	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+ 
+	# construct a mask for the color 
+	mask = cv2.inRange(hsv, colorLower, colorUpper)
+
+	# perform a series of dilations and erosions to remove any small blobs left in the mask
+	mask = cv2.erode(mask, None, iterations=2)
+	mask = cv2.dilate(mask, None, iterations=2)
+
+    # find contours in the mask and initialize the current (x, y) center
+	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+	cnts = imutils.grab_contours(cnts)
+ 
+	# only proceed if at least one contour was found
+	if len(cnts) > 0:
+		# find the largest contour in the mask, then use it to compute the minimum enclosing circle
+		c = max(cnts, key=cv2.contourArea)
+		((x, y), radius) = cv2.minEnclosingCircle(c)
+ 
+		# only proceed if the radius meets a minimum size
+		if radius > 10:
+			# draw the circle on the frame
+			cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
+ 
+	# show the frame to our screen
+	cv2.imshow("Color Tracker", frame)
+	cv2.imshow("Masked", mask)
+
+	# if the 'q' key is pressed, stop the loop
+	if cv2.waitKey(1) & 0xFF == ord("q"):
+		break
+
+# stop the camera video stream
+cap.release()
+
+# close all windows
+cv2.destroyAllWindows()
+
+```
+
+
 
 
 
