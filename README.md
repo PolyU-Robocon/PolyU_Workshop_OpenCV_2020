@@ -92,6 +92,7 @@ Now you should be able to run the other files.
 
 ### Extra
 
+* `colorthresholder.py` - color filter picker
 * `canny.py` - cannyedge detection
 * `selectable-tracker.py` - selectable object tracking using tracker
 

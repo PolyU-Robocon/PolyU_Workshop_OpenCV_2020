@@ -27,8 +27,6 @@ hMin = sMin = vMin = hMax = sMax = vMax = 0
 phMin = psMin = pvMin = phMax = psMax = pvMax = 0
 
 cap = cv2.VideoCapture(0)
-#img = cv2.imread('1.jpg')
-#output = img
 waitTime = 33
 
 while(1):
