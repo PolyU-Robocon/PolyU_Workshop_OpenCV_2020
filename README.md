@@ -1,6 +1,6 @@
 # PolyU_Workshop_OpenCV_2020
 
-Host : The Hong Kong Institution of Engineers(HKIE), HKIESC-PolyU , PolyU Enginnering Club, PolyU Robotics Team
+Host : HKIESC-PolyU , PolyU Enginnering Club, PolyU Robotics Team
 Presenter : @vinesmsuic (From PolyU Robotics Team)
 
 
