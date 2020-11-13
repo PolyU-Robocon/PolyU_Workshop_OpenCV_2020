@@ -45,6 +45,7 @@ In case the above code got error, try to install those dependencies on your own.
 > For Windows/MacOS, you may use [anaconda](https://www.anaconda.com/) to get opencv
 > Firstly, install [anaconda](https://www.anaconda.com/) , then type the commands:
 > ```shell
+> $ conda install numpy
 > $ conda install -c conda-forge opencv
 > $ sudo pip3 install imutils
 > $ sudo pip3 install opencv-contrib-python
@@ -52,6 +53,7 @@ In case the above code got error, try to install those dependencies on your own.
 
 > For Linux distro, use the below command to get opencv
 > ```shell
+> $ sudo apt-get install python3-numpy
 > $ sudo apt install python3-opencv
 > $ sudo pip3 install imutils
 > $ sudo pip3 install opencv-contrib-python
