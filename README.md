@@ -1,10 +1,12 @@
 # PolyU_Workshop_OpenCV_2020
 
 Host : HKIESC-PolyU , PolyU Enginnering Club, PolyU Robotics Team
+<br>
 Presenter : @vinesmsuic (From PolyU Robotics Team)
-
+<br>
 
 This workshop will briefly introduce Computer Vision and OpenCV. 
+<br>
 OpenCV is a robust library for processing images.
 
 
