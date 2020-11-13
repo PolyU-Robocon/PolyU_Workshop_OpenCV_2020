@@ -214,7 +214,15 @@ cv2.destroyAllWindows()
 
 
 
+> **Why HSV in OpenCV uses 0 - 179 for Hue?**
+>
+> Developers used `uchar` to store the value.
+>
+> `uchar` can only store -127 to 127 which means only 255 values can be stored.
+>
+> So they decided to just divide the Hue by 2.
 
+ 
 
 * `np.array()` creates an array.
 * `cv2.cvtColor()` allows you to convert a color into another space.
