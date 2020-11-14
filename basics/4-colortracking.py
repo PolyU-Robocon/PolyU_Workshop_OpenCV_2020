@@ -3,8 +3,8 @@ import numpy as np
 import cv2
 
 # define the lower and upper boundaries of the "color" in the HSV color space
-colorLower = np.array([173,148,84])
-colorUpper = np.array([179,255,255])
+colorLower = np.array([0,136,0])
+colorUpper = np.array([2,255,255])
 # ^ Notice HSV Hue is 0 ~ 179!
 
 # grab the reference to the webcam
